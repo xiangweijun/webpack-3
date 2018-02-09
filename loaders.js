@@ -66,7 +66,7 @@ const loaders = [
                 loader: 'url-loader',
                 options: {
                     limit: 10*1024, // 10k以内转成base64
-                    name: `${constants.PROJECT}/${constants.version}/assets/img/[name]-[hash:8].[ext]`
+                    name: `${process.env.NODE_ENV == 'development' ? '' : '/'}${constants.PROJECT}/${constants.version}/assets/img/[name]-[hash:8].[ext]`
                 }
             }
         ]
@@ -75,7 +75,7 @@ const loaders = [
         use: {
             loader: 'file-loader',
             options: { 
-                name: `${constants.PROJECT}/${constants.version}/assets/font/[name]-[hash:8].[ext]`
+                name: `${process.env.NODE_ENV == 'development' ? '' : '/'}${constants.PROJECT}/${constants.version}/assets/font/[name]-[hash:8].[ext]`
             }
         }
     }
