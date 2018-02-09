@@ -5,6 +5,7 @@
     "commonjs": true,
     "es6": true
   },
+  "extends": "airbnb",
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
@@ -17,9 +18,9 @@
   },
   "rules": {
     "indent": ["error", 4],
-    "semi": "warn",
+    "semi": ["error", "always"],
     "no-undef": warn,
     "quotes": ["warn", "single"],
-    "no-eval": "error"
+    "no-eval": "error",
   }   
 }

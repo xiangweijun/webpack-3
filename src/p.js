@@ -1,7 +1,7 @@
 export default function () {
+    const a = "xx";
+    const b = '';
     // 注释
-    console.log('xx');
-    var a = "xx";
-    var b = '';
-    alert('hello');
+    console.log(b);
+    alert(a);
 }

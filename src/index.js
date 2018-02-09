@@ -1,5 +1,5 @@
 import './assets/sass/style.scss';
-import f from './p.js';
+import f from './p';
 
 $(() => {
     $('#tt').text('flex');
