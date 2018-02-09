@@ -3,5 +3,5 @@ export default function () {
     const b = '';
     // 注释
     console.log(b);
-    alert(a);
+    alert(a)
 }
