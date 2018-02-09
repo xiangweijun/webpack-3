@@ -1,0 +1,8 @@
+.title {
+    font-size: 24px;
+    color: red;
+}
+.flex {
+    display: flex;
+    box-shadow: 0 2px 0 0 #fff;
+}
