@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "globals": {
+    "G1": true
+  },
+  "rules": {
+    "indent": ["error", 4],
+    "semi": "warn",
+    "no-undef": warn,
+    "quotes": ["warn", "single"],
+    "no-eval": "error"
+  }   
+}

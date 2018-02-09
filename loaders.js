@@ -1,5 +1,5 @@
 /**
- * @author  WeiJun_Xiang <xiangweijun@jimistore.com>
+ * @author  WeiJun_Xiang <xwjune@163.com>
  * @date    2018/01/25
  */
 
@@ -8,7 +8,10 @@ const constants = require('./constants');
 const loaders = [
     {
         test: /src.*\.js$/,
-        use: 'babel-loader'
+        use: [
+            'babel-loader',
+            'eslint-loader'
+        ]
     },{
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
