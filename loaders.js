@@ -8,10 +8,7 @@ const constants = require('./constants');
 const loaders = [
     {
         test: /src.*\.js$/,
-        use: [
-            'babel-loader',
-            'eslint-loader'
-        ]
+        use: 'babel-loader'
     },{
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -69,7 +66,7 @@ const loaders = [
                 loader: 'url-loader',
                 options: {
                     limit: 10*1024, // 10k以内转成base64
-                    name: `/${constants.PROJECT}/${constants.version}/assets/img/[name]-[hash:8].[ext]`
+                    name: `${constants.PROJECT}/${constants.version}/assets/img/[name]-[hash:8].[ext]`
                 }
             }
         ]
@@ -78,14 +75,14 @@ const loaders = [
         use: {
             loader: 'file-loader',
             options: { 
-                name: `/${constants.PROJECT}/${constants.version}/assets/font/[name]-[hash:8].[ext]`
+                name: `${constants.PROJECT}/${constants.version}/assets/font/[name]-[hash:8].[ext]`
             }
         }
     }
 ];
 
 // 生产环境移除console代码
-if ('production' === process.env.NODE_ENV && 'prod' === process.env.JIMI_ENV) {
+if ('production' === process.env.NODE_ENV && 'prod' === process.env.ENV) {
     loaders.push({
         test: /\.js$/,
         use: {

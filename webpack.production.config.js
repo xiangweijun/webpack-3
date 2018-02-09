@@ -25,9 +25,10 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(path.join(__dirname, 'dist')),
         new webpack.DefinePlugin({
-            'API_USER':    JSON.stringify(constants.API_USER),
-            'PROJECT':     JSON.stringify(constants.PROJECT),
-            'APP_VERSION': JSON.stringify(constants.version)
+            'API_USER': JSON.stringify(constants.API_USER),
+            'PROJECT': JSON.stringify(constants.PROJECT),
+            'APP_VERSION': JSON.stringify(constants.version),
+            'ENV': JSON.stringify(constants.ENV)
         }),
         // new CopyWebpackPlugin([
         //     { from: 'src/static', to: `${constants.PROJECT}/static` }

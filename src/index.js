@@ -4,6 +4,5 @@ import f from './p';
 $(() => {
     $('#tt').text('flex');
     f();
-    b = 'aa';
-    G1 = '12';
+    window.G1 = '12';
 });
