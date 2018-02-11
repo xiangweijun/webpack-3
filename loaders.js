@@ -82,7 +82,7 @@ const loaders = [
 ];
 
 // 生产环境移除console代码
-if ('production' === process.env.NODE_ENV && 'prod' === process.env.ENV) {
+if ('production' === process.env.NODE_ENV && 'prod' === ENV) {
     loaders.push({
         test: /\.js$/,
         use: {
