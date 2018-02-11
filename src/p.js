@@ -4,5 +4,5 @@ export default function () {
     // 注释
     console.log(b);
     console.log(`env: ${ENV}`);
-    alert(a)
+    alert(a);
 }
