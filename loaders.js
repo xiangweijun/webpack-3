@@ -85,17 +85,21 @@ const loaders = [
     },
 ];
 
-// 生产环境移除console代码
-if (process.env.NODE_ENV === 'production' && ENV === 'prod') {
-    loaders.push({
-        test: /\.js$/,
-        use: {
-            loader: 'webpack-strip',
-            options: {
-                strip: ['console.log', 'console.info', 'console.debug'],
+// 生产环境
+if (process.env.NODE_ENV === 'production') {
+    loaders[0].use.pop(); // 生成环境去除eslint-loader
+    if (constants.ENV === 'prod') {
+    // 生产环境移除console
+        loaders.push({
+            test: /\.js$/,
+            use: {
+                loader: 'webpack-strip',
+                options: {
+                    strip: ['console.log', 'console.info', 'console.debug'],
+                },
             },
-        },
-    });
+        });
+    }
 }
 
 module.exports = loaders;
