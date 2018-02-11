@@ -8,7 +8,10 @@ const constants = require('./constants');
 const loaders = [
     {
         test: /src.*\.js$/,
-        use: 'babel-loader'
+        use: [
+            'babel-loader',
+            'eslint-loader'
+        ]
     },{
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
