@@ -12,7 +12,7 @@ exports.version = '1.0.0';
 
 // 用户
 exports.API_USER = {
-    'dev': 'http://user.dev.jimistore.com',
-    'test': 'http://user.test.jimistore.com',
-    'prod': 'https://user-api.jimistore.com'
+    dev: 'http://user.dev.jimistore.com',
+    test: 'http://user.test.jimistore.com',
+    prod: 'https://user-api.jimistore.com',
 }[exports.ENV];
