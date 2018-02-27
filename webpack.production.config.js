@@ -49,7 +49,7 @@ module.exports = {
                 warnings: false,
             },
         }),
-        new webpack.BannerPlugin(`v${constants.version} | Copyright © ${new Date().getFullYear()}年 jimistore. All rights reserved.`),
+        new webpack.BannerPlugin(`v${constants.version} | Copyright © ${new Date().getFullYear()}年 xxx. All rights reserved.`),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
             project: constants.PROJECT,

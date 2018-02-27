@@ -14,7 +14,7 @@ const loaders = [
             'eslint-loader',
         ],
     }, {
-        test: /\.css$/,
+        test: /[^module]\.css$/,
         use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
@@ -37,6 +37,27 @@ const loaders = [
                 },
             ],
         }),
+    },{
+        test: /\.module.css$/,
+        use: [
+            'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    modules: true,
+                    // localIdentName: '[hash:base64:5]__[local]',
+                    minimize: process.env.NODE_ENV == 'production', // 生产环境压缩
+                    sourceMap: process.env.NODE_ENV != 'production', // 非生产环境生成sourceMap
+                },
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    config: {
+                        path: 'postcss.config.js',
+                    }
+                },
+            },
+        ],
     }, {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
