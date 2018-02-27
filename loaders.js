@@ -46,8 +46,6 @@ const loaders = [
                 options: {
                     modules: true,
                     // localIdentName: '[hash:base64:5]__[local]',
-                    minimize: process.env.NODE_ENV == 'production', // 生产环境压缩
-                    sourceMap: process.env.NODE_ENV != 'production', // 非生产环境生成sourceMap
                 },
             }, {
                 loader: 'postcss-loader',
