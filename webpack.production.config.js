@@ -16,11 +16,16 @@ const constants = require('./constants');
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
-        filename: `${constants.PROJECT}/${constants.version}/[name].[hash:8].js`,
-        path: path.join(__dirname, 'dist'),
+        filename: '[name].[hash:8].js',
+        path: path.join(__dirname, `dist/${constants.version}`),
     },
     module: {
         rules: require('./loaders'),
+    },
+    resolve: {
+        alias: {
+            element: path.resolve(__dirname, 'src/element.js'), 
+        },
     },
     plugins: [
         new CleanWebpackPlugin(path.join(__dirname, 'dist')),
@@ -30,10 +35,10 @@ module.exports = {
             APP_VERSION: JSON.stringify(constants.version),
             ENV: JSON.stringify(constants.ENV),
         }),
-        // new CopyWebpackPlugin([
-        //     { from: 'src/static', to: `${constants.PROJECT}/static` }
-        // ]),
-        new ExtractTextPlugin(`${constants.PROJECT}/${constants.version}/[name].[hash:8].css`),
+        new ExtractTextPlugin('[name].[hash:8].css'),
+        new CopyWebpackPlugin([
+            { from: 'static', to: 'static' }
+        ]),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
@@ -52,7 +57,7 @@ module.exports = {
         new webpack.BannerPlugin(`v${constants.version} | Copyright © ${new Date().getFullYear()}年 xxx. All rights reserved.`),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
-            project: constants.PROJECT,
+            filename: '../index.html',
         }),
     ],
 };

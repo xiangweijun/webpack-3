@@ -7,7 +7,6 @@
 
 exports.PORT = process.env.PORT || 3000;
 exports.ENV = process.env.ENV || 'test';
-exports.PROJECT = 'test';
 exports.version = '1.0.0';
 
 // 用户

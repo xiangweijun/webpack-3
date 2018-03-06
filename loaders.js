@@ -45,7 +45,7 @@ const loaders = [
                 loader: 'css-loader',
                 options: {
                     modules: true,
-                    // localIdentName: '[hash:base64:5]__[local]',
+                    localIdentName: '[name]__[local]-[hash:base64:5]',
                 },
             }, {
                 loader: 'postcss-loader',
@@ -89,7 +89,7 @@ const loaders = [
                 loader: 'url-loader',
                 options: {
                     limit: 10 * 1024, // 10k以内转成base64
-                    name: `${process.env.NODE_ENV == 'development' ? '' : '/'}${constants.PROJECT}/${constants.version}/assets/img/[name]-[hash:8].[ext]`,
+                    name: 'assets/img/[name]-[hash:8].[ext]',
                 },
             },
         ],
@@ -98,7 +98,7 @@ const loaders = [
         use: {
             loader: 'file-loader',
             options: {
-                name: `${process.env.NODE_ENV == 'development' ? '' : '/'}${constants.PROJECT}/${constants.version}/assets/font/[name]-[hash:8].[ext]`,
+                name: 'assets/font/[name]-[hash:8].[ext]',
             },
         },
     },

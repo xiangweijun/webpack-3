@@ -3,3 +3,6 @@
     color: red;
     display: flex;
 }
+:global(.title) {
+  color: green;
+}

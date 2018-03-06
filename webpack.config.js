@@ -16,8 +16,8 @@ module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     devtool: 'source-map',
     output: {
-        filename: `${constants.PROJECT}/${constants.version}/[name].[hash:8].js`,
-        path: path.join(__dirname, 'dist'),
+        filename: '[name].[hash:8].js',
+        path: path.join(__dirname, `dist/${constants.version}`),
         publicPath: `http://localhost:${constants.PORT}/`,
     },
     module: {
@@ -31,6 +31,11 @@ module.exports = {
         progress: true,
         inline: true,
     },
+    resolve: {
+        alias: {
+            element: path.resolve(__dirname, 'src/element.js'), 
+        },
+    },
     plugins: [
         new webpack.DefinePlugin({
             API_USER: JSON.stringify(constants.API_USER),
@@ -38,11 +43,13 @@ module.exports = {
             APP_VERSION: JSON.stringify(constants.version),
             ENV: JSON.stringify(constants.ENV),
         }),
-        new ExtractTextPlugin(`${constants.PROJECT}/${constants.version}/[name].[hash:8].css`),
+        new ExtractTextPlugin('[name].[hash:8].css'),
+        new CopyWebpackPlugin([
+            { from: 'static', to: 'static' }
+        ]),
         // new webpack.HotModuleReplacementPlugin(),  // 启用热替换
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
-            project: constants.PROJECT,
         }),
     ],
 };
