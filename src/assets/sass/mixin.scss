@@ -1,0 +1,49 @@
+//水平线
+@mixin line-h($padding, $style, $color) {
+    left: $padding;
+    right: $padding;
+    height: 0;
+    border-top: 1px $style $color;
+    -webkit-transform: scaleY(0.5);
+       -moz-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+}
+//垂直线
+@mixin line-v($padding, $style, $color) {
+    top: $padding;
+    bottom: $padding;
+    width: 0;
+    border-left: 1px $style $color;
+    -webkit-transform: scaleX(0.5);
+       -moz-transform: scaleX(0.5);
+            transform: scaleX(0.5);
+}
+/** 分割线 **/
+@mixin line($position:bottom, $color:#e5e5e5, $style:solid, $padding:0) {
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        color: $color;
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+                transform-origin: 0 0;
+        @if (left == $position) {
+        //左分割线
+            left: 0;
+            @include line-v($padding, $style, $color);
+        } @else if (right == $position) {
+        //右分割线
+            right: 0;
+            @include line-v($padding, $style, $color);
+        } @else if (top == $position) {
+        //顶部分割线
+            top: 0;
+            @include line-h($padding, $style, $color);
+        } @else {
+        //底部分割线
+            bottom: 0;   
+            @include line-h($padding, $style, $color);
+        }
+    }
+}

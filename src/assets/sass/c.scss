@@ -28,3 +28,6 @@ body {
     flex-direction: column;
     transition: all 2s ease;
 }
+.line {
+    @include line;
+}

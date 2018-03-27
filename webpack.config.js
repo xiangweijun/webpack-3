@@ -17,7 +17,7 @@ module.exports = {
     devtool: 'source-map',
     output: {
         filename: '[name].[hash:8].js',
-        path: path.join(__dirname, `dist/${constants.version}`),
+        path: path.join(__dirname, 'dist'),
         publicPath: `http://localhost:${constants.PORT}/`,
     },
     module: {

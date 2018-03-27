@@ -23,6 +23,7 @@
     "quotes": ["warn", "single"],
     "no-eval": "error",
     "import/no-unresolved": warn,
-    "import/extensions": warn
+    "import/extensions": warn,
+    "import/prefer-default-export": 0
   }   
 }
