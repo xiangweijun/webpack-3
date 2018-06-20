@@ -7,7 +7,6 @@ $(() => {
     document.getElementById('content').innerHTML = element;
     $('#tt').text('flex');
     f();
-    window.G1 = '12';
     forEach([1, 2], (value) => {
         console.log(value);
     });

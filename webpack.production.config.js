@@ -12,12 +12,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const constants = require('./constants');
+let publicPath = `/${constants.VERSION}/`;
+if (constants.PATHS !== '') {
+    publicPath = `/${constants.PATHS}/${constants.VERSION}/`;
+}
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
-        filename: '[name].[hash:8].js',
-        path: path.join(__dirname, `dist/${constants.version}`),
+        filename: '[name].[chunkhash:8].js',
+        path: path.join(__dirname, `dist/${constants.VERSION}`),
+        publicPath,
     },
     module: {
         rules: require('./loaders'),
@@ -31,11 +36,15 @@ module.exports = {
         new CleanWebpackPlugin(path.join(__dirname, 'dist')),
         new webpack.DefinePlugin({
             API_USER: JSON.stringify(constants.API_USER),
-            PROJECT: JSON.stringify(constants.PROJECT),
-            APP_VERSION: JSON.stringify(constants.version),
-            ENV: JSON.stringify(constants.ENV),
+            APP_VERSION: JSON.stringify(constants.VERSION),
+            APP_ENV: JSON.stringify(constants.ENV),
         }),
-        new ExtractTextPlugin('[name].[hash:8].css'),
+        // 提供公共代码
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: '[name].[chunkhash:8].js',
+        }),
+        new ExtractTextPlugin('[name].[contenthash:8].css'),
         new CopyWebpackPlugin([
             { from: 'static', to: 'static' }
         ]),
@@ -54,7 +63,7 @@ module.exports = {
                 warnings: false,
             },
         }),
-        new webpack.BannerPlugin(`v${constants.version} | Copyright © ${new Date().getFullYear()}年 xxx. All rights reserved.`),
+        new webpack.BannerPlugin(`v${constants.VERSION} | Copyright © ${new Date().getFullYear()} xwjun-Inc. All rights reserved.`),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
             filename: '../index.html',

@@ -14,7 +14,9 @@
     }
   },
   "globals": {
-    "G1": true
+    "API_USER": false,
+    "APP_VERSION": false,
+    "APP_ENV": false,
   },
   "rules": {
     "indent": ["error", 4],

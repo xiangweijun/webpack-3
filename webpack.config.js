@@ -16,9 +16,8 @@ module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     devtool: 'source-map',
     output: {
-        filename: '[name].[hash:8].js',
-        path: path.join(__dirname, 'dist'),
-        publicPath: `http://localhost:${constants.PORT}/`,
+        filename: '[name].[chunkhash:8].js',
+        publicPath: '/',
     },
     module: {
         rules: require('./loaders'),
@@ -33,17 +32,21 @@ module.exports = {
     },
     resolve: {
         alias: {
-            element: path.resolve(__dirname, 'src/element.js'), 
+            element: path.resolve(__dirname, 'src/element.js'),
         },
     },
     plugins: [
         new webpack.DefinePlugin({
             API_USER: JSON.stringify(constants.API_USER),
-            PROJECT: JSON.stringify(constants.PROJECT),
-            APP_VERSION: JSON.stringify(constants.version),
-            ENV: JSON.stringify(constants.ENV),
+            APP_VERSION: JSON.stringify(constants.VERSION),
+            APP_ENV: JSON.stringify(constants.ENV),
         }),
-        new ExtractTextPlugin('[name].[hash:8].css'),
+        // 提供公共代码
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: '[name].[chunkhash:8].js',
+        }),
+        new ExtractTextPlugin('[name].[contenthash:8].css'),
         new CopyWebpackPlugin([
             { from: 'static', to: 'static' }
         ]),

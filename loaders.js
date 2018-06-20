@@ -21,8 +21,8 @@ const loaders = [
                 {
                     loader: 'css-loader',
                     options: {
-                        minimize: process.env.NODE_ENV == 'production', // 生产环境压缩
-                        sourceMap: process.env.NODE_ENV != 'production', // 非生产环境生成sourceMap
+                        minimize: process.env.NODE_ENV === 'production', // 生产环境压缩
+                        sourceMap: process.env.NODE_ENV !== 'production', // 非生产环境生成sourceMap
                     },
                 }, {
                     loader: 'postcss-loader',
@@ -45,7 +45,7 @@ const loaders = [
                 loader: 'css-loader',
                 options: {
                     modules: true,
-                    localIdentName: '[name]__[local]-[hash:base64:5]',
+                    localIdentName: process.env.NODE_ENV === 'production' ? '[local]___[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
                 },
             }, {
                 loader: 'postcss-loader',
@@ -64,8 +64,8 @@ const loaders = [
                 {
                     loader: 'css-loader',
                     options: {
-                        minimize: process.env.NODE_ENV == 'production',
-                        sourceMap: process.env.NODE_ENV != 'production',
+                        minimize: process.env.NODE_ENV === 'production',
+                        sourceMap: process.env.NODE_ENV !== 'production',
                     },
                 }, {
                     loader: 'postcss-loader',
@@ -89,7 +89,7 @@ const loaders = [
                 loader: 'url-loader',
                 options: {
                     limit: 10 * 1024, // 10k以内转成base64
-                    name: 'assets/img/[name]-[hash:8].[ext]',
+                    name: 'assets/[name].[hash:8].[ext]',
                 },
             },
         ],
@@ -98,7 +98,7 @@ const loaders = [
         use: {
             loader: 'file-loader',
             options: {
-                name: 'assets/font/[name]-[hash:8].[ext]',
+                name: 'assets/[name].[hash:8].[ext]',
             },
         },
     },
