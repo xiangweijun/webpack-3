@@ -14,7 +14,7 @@
   "lint-staged": {
     "src/**/*.js": "eslint"
   },
-  "author": "WeiJun_Xiang <xwjune@163.com>",
+  "author": "xwjun <xwjune@163.com>",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^7.2.5",

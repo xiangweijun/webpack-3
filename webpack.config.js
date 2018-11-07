@@ -1,8 +1,8 @@
 /**
  * 开发环境配置文件
  *
- * @author  WeiJun_Xiang <xwjune@163.com>
- * @date    2018/01/25
+ * @author xwjun <xwjune@163.com>
+ * @date 2018/01/25
  */
 
 const path = require('path');
@@ -10,6 +10,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const loaders = require('./loaders');
 const constants = require('./constants');
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
         publicPath: '/',
     },
     module: {
-        rules: require('./loaders'),
+        rules: loaders,
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
@@ -37,9 +38,9 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            API_USER: JSON.stringify(constants.API_USER),
-            APP_VERSION: JSON.stringify(constants.VERSION),
-            APP_ENV: JSON.stringify(constants.ENV),
+            API: JSON.stringify(constants.API),
+            APPVER: JSON.stringify(constants.APPVER),
+            APPENV: JSON.stringify(constants.APPENV),
         }),
         // 提供公共代码
         new webpack.optimize.CommonsChunkPlugin({
@@ -48,7 +49,7 @@ module.exports = {
         }),
         new ExtractTextPlugin('[name].[contenthash:8].css'),
         new CopyWebpackPlugin([
-            { from: 'static', to: 'static' }
+            { from: 'static', to: 'static' },
         ]),
         // new webpack.HotModuleReplacementPlugin(),  // 启用热替换
         new HtmlWebpackPlugin({

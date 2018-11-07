@@ -14,18 +14,27 @@
     }
   },
   "globals": {
-    "API_USER": false,
-    "APP_VERSION": false,
-    "APP_ENV": false,
+    "API": false,
+    "APPVER": false,
+    "APPENV": false
   },
   "rules": {
-    "indent": ["error", 4],
-    "semi": ["error", "always"],
-    "no-undef": warn,
-    "quotes": ["warn", "single"],
-    "no-eval": "error",
-    "import/no-unresolved": warn,
-    "import/extensions": warn,
-    "import/prefer-default-export": 0
-  }   
+    "indent": [2, 4],
+    "semi": [2, "always"],
+    "no-undef": 1,
+    "quotes": [1, "single"],
+    "no-eval": 2,
+    "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": [0],
+    "import/prefer-default-export": 0,
+    "react/jsx-indent": [2, 4],
+    "prefer-destructuring": 0,
+    "react/jsx-indent-props": [2, 4],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "react/require-default-props": [0]
+  }
 }

@@ -8,20 +8,20 @@
 // 端口
 const PORT = process.env.PORT || 3000;
 // 环境变量
-const ENV = process.env.ENV || 'dev';
+const APPENV = process.env.APPENV || 'dev';
 // 版本号
-const VERSION = '1.0.0';
-// 基于根目录的项目路径【AA/BB/CC】
+const APPVER = '1.0.0';
+// 基于根目录的项目路径【AA/BB】
 const PATHS = process.env.PATHS || '';
 // 用户接口域名
-const API_USER = {
-    dev: 'http://user.dev.jimistore.com',
-    test: 'http://user.test.jimistore.com',
-    prod: 'https://user-api.jimistore.com',
-}[ENV];
+const API = {
+    dev: 'http://user.dev.jun.com',
+    test: 'http://user.test.jun.com',
+    prod: 'https://user-api.jun.com',
+}[APPVER];
 
 exports.PORT = PORT;
-exports.ENV = ENV;
-exports.VERSION = VERSION;
+exports.APPENV = APPENV;
+exports.APPVER = APPVER;
 exports.PATHS = PATHS;
-exports.API_USER = API_USER;
+exports.API = API;

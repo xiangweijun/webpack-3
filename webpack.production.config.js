@@ -1,8 +1,8 @@
 /**
  * 生产环境配置文件
  *
- * @author  WeiJun_Xiang <xwjune@163.com>
- * @date    2018/01/25
+ * @author xwjun <xwjune@163.com>
+ * @date 2018/01/25
  */
 
 const path = require('path');
@@ -11,33 +11,35 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const loaders = require('./loaders');
 const constants = require('./constants');
-let publicPath = `/${constants.VERSION}/`;
+
+let publicPath = `/${constants.APPVER}/`;
 if (constants.PATHS !== '') {
-    publicPath = `/${constants.PATHS}/${constants.VERSION}/`;
+    publicPath = `/${constants.PATHS}/${constants.APPVER}/`;
 }
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
         filename: '[name].[chunkhash:8].js',
-        path: path.join(__dirname, `dist/${constants.VERSION}`),
+        path: path.join(__dirname, `dist/${constants.APPVER}`),
         publicPath,
     },
     module: {
-        rules: require('./loaders'),
+        rules: loaders,
     },
     resolve: {
         alias: {
-            element: path.resolve(__dirname, 'src/element.js'), 
+            element: path.resolve(__dirname, 'src/element.js'),
         },
     },
     plugins: [
         new CleanWebpackPlugin(path.join(__dirname, 'dist')),
         new webpack.DefinePlugin({
-            API_USER: JSON.stringify(constants.API_USER),
-            APP_VERSION: JSON.stringify(constants.VERSION),
-            APP_ENV: JSON.stringify(constants.ENV),
+            API: JSON.stringify(constants.API),
+            APPVER: JSON.stringify(constants.APPVER),
+            APPENV: JSON.stringify(constants.APPENV),
         }),
         // 提供公共代码
         new webpack.optimize.CommonsChunkPlugin({
@@ -46,7 +48,7 @@ module.exports = {
         }),
         new ExtractTextPlugin('[name].[contenthash:8].css'),
         new CopyWebpackPlugin([
-            { from: 'static', to: 'static' }
+            { from: 'static', to: 'static' },
         ]),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
@@ -63,7 +65,7 @@ module.exports = {
                 warnings: false,
             },
         }),
-        new webpack.BannerPlugin(`v${constants.VERSION} | Copyright © ${new Date().getFullYear()} xwjun-Inc. All rights reserved.`),
+        new webpack.BannerPlugin(`v${constants.APPVER} | Copyright © ${new Date().getFullYear()} xwjun-Inc. All rights reserved.`),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
             filename: '../index.html',

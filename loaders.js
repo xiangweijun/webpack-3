@@ -1,6 +1,6 @@
 /**
- * @author  WeiJun_Xiang <xwjune@163.com>
- * @date    2018/01/25
+ * @author xwjun <xwjune@163.com>
+ * @date 2018/01/25
  */
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -37,7 +37,7 @@ const loaders = [
                 },
             ],
         }),
-    },{
+    }, {
         test: /\.module.css$/,
         use: [
             'style-loader',
@@ -52,7 +52,7 @@ const loaders = [
                 options: {
                     config: {
                         path: 'postcss.config.js',
-                    }
+                    },
                 },
             },
         ],
@@ -107,7 +107,7 @@ const loaders = [
 // 生产环境
 if (process.env.NODE_ENV === 'production') {
     loaders[0].use.pop(); // 生成环境去除eslint-loader
-    if (constants.ENV === 'prod') {
+    if (constants.APPENV === 'prod') {
     // 生产环境移除console
         loaders.push({
             test: /\.js$/,
